@@ -2,10 +2,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
-import java.net.InetAddress;
 import java.net.Socket;
-
-import static java.lang.constant.ConstantDescs.NULL;
 
 public class Client implements Runnable {
 
@@ -30,7 +27,7 @@ public class Client implements Runnable {
       t.start();
 
       String inMessage = "";
-      while ((inMessage = in.readLine()) != NULL) {
+      while ((inMessage = in.readLine()) != null) {
         System.out.println(inMessage);
       }
     } catch (IOException e) {

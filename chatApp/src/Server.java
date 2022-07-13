@@ -6,40 +6,45 @@ import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-import static java.lang.constant.ConstantDescs.NULL;
+//import static java.util.EnumMap.NULL;
+
+// import static java.lang.constant.ConstantDescs.NULL;
 
 
-
-public class Server implements Runnable{
-  private List<ConnectionHandler> connections; // list of connected clients
+public class Server implements Runnable {
+  private final List<ConnectionHandler> connections; // list of connected clients
   private ServerSocket server;
   private boolean done;
   private ExecutorService pool;
 
 
-  public Server(){
+  public Server() {
     connections = new ArrayList<>();
     done = false;
+  }
+
+  public static void main(String[] args) {
+    Server server = new Server();
+    server.run();
   }
 
   public void shutdown() throws IOException {
     done = true;
     pool.shutdown();
-    if (!server.isClosed()){
+    if (!server.isClosed()) {
       server.close();
     }
-    for (ConnectionHandler ch : connections){
+    for (ConnectionHandler ch : connections) {
       ch.shutdown();
     }
   }
-
 
   @Override
   public void run() {
     try {
       server = new ServerSocket(9999);
       pool = Executors.newCachedThreadPool();
-      while(!done){
+      while (!done) {
         Socket client = server.accept();
         ConnectionHandler handler = new ConnectionHandler(client, this);
         connections.add(handler);
@@ -56,16 +61,12 @@ public class Server implements Runnable{
 
 
   }
-  public void broadcast(String message){
-    for (ConnectionHandler ch : connections){
-      if (ch != NULL){
+
+  public void broadcast(String message) {
+    for (ConnectionHandler ch : connections) {
+      if (ch != null) {
         ch.sendMessage(message);
       }
     }
-  }
-
-  public static void main(String[] args) {
-    Server server = new Server();
-    server.run();
   }
 }

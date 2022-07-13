@@ -4,14 +4,12 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
 
-import static java.lang.constant.ConstantDescs.NULL;
-
 public class ConnectionHandler implements Runnable {
   private final Socket client;
+  private final Server server;
   private BufferedReader in; // holds what client sends
   private PrintWriter out; // holds what we sent to client
   private String username;
-  private Server server;
 
   public ConnectionHandler(Socket client, Server server) {
     this.client = client;
@@ -25,13 +23,13 @@ public class ConnectionHandler implements Runnable {
       in = new BufferedReader(new InputStreamReader(client.getInputStream()));
       out.println("Please enter a username: ");
       this.username = in.readLine();
-      if (this.username.equals(NULL)) {
+      if (this.username.equals("")) {
         throw new NullPointerException("Username cannot be nothing");
       }
       System.out.println(this.username + " has connected to the chat!");
       this.server.broadcast(username + " joined the chat!");
       String message;
-      while ((message = in.readLine()) != NULL) {
+      while (!(message = in.readLine()).equals("")) {
         if (message.startsWith("/nick ")) {
           String[] messageSplit = message.split(" ", 2);
           if (messageSplit.length == 2) {
@@ -76,4 +74,4 @@ public class ConnectionHandler implements Runnable {
 
 
 
-*/
+ */
