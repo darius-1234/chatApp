@@ -1,0 +1,23 @@
+{
+  "name": "chatapp",
+  "version": "1.0.0",
+  "description": "milan's mum",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "../../node_modules/.bin/electron ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/darius-1234/chatApp.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/darius-1234/chatApp/issues"
+  },
+  "homepage": "https://github.com/darius-1234/chatApp#readme",
+  "dependencies": {
+    "electron": "^19.0.8"
+  }
+}
