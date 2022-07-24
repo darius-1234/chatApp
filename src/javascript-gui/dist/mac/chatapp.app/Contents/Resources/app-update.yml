@@ -1,0 +1,4 @@
+owner: darius-1234
+repo: chatApp
+provider: github
+updaterCacheDirName: chatapp-updater
