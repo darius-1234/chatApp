@@ -1,10 +1,22 @@
 <script>
-	export let name;
+	import LoginComponent from './Components/LoginComponent.svelte';
+	import { store } from './hooks/auth';
+	import AfterLogin from './Components/AfterLogin.svelte';
 </script>
 
 <main>
-	<h1>Hello {name}!</h1>
-	<p>Visit the <a href="https://svelte.dev/tutorial">Svelte tutorial</a> to learn how to build Svelte apps.</p>
+	<h1>Chat App</h1>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!--	<input type="text" class="Username" placeholder="Username">-->
+
+<!--	<button>Login</button>-->
+	{#if $store != null }
+		<AfterLogin />
+	{:else }
+		<LoginComponent />
+	{/if}
 </main>
 
 <style>
@@ -16,7 +28,7 @@
 	}
 
 	h1 {
-		color: #ff3e00;
+		color: #99003b;
 		text-transform: uppercase;
 		font-size: 4em;
 		font-weight: 100;
@@ -27,4 +39,39 @@
 			max-width: none;
 		}
 	}
+
+	body {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		flex-direction: column;
+		height: 100vh;
+		font-family: "Trebuchet MS";
+
+	}
+
+	input {
+		width: 300px;
+		height: 40px;
+		border: none;
+		border-radius: 7px;
+		background-color: rgba(0,0,0,0.7);
+		color: white;
+		font-size: 18px;
+		padding-left: 10px;
+	}
+
+	button {
+		margin: 20px;
+		width: 300px;
+		height: 40px;
+		border: none;
+		border-radius: 7px;
+		background-color: #000000;
+		color: white;
+		font-size: 18px;
+		padding-left: 10px;
+		cursor: pointer;
+	}
 </style>
+
