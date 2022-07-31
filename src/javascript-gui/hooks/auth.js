@@ -6,7 +6,9 @@ export const store = writable(null);
 
 let sessions = []
 
+export const username = user;
 export const getUserDetails = async ( username ) => {
     if ( username === user )
         return 1
 }
+
