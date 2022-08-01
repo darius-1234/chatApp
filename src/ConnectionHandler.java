@@ -30,7 +30,7 @@ public class ConnectionHandler implements Runnable {
       this.server.broadcast(username + " joined the chat!");
       String message;
       while (!(message = in.readLine()).equals("")) {
-        if (message.startsWith("/nick ")) {
+        if (message.startsWith("/user ")) {
           String[] messageSplit = message.split(" ", 2);
           if (messageSplit.length == 2) {
             this.server.broadcast(this.username + " renamed to " + messageSplit[1]);
